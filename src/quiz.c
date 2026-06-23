@@ -6,12 +6,12 @@ void insert_question(QuestionList* list, Question* quest){
 
     if(list->head == NULL){
         list->head = quest;
-        list-> tail = quest;
+        list->tail = quest;
     }
     else{
         list->tail->next = quest;
         list->tail = quest;
-        list->size += 1;
+        list->size++;
     }
 
 }

@@ -14,5 +14,9 @@ int main(){
     question -> next = NULL;
 
     QuestionList *list = malloc(sizeof(QuestionList));
+    list->head = NULL;
+    list->tail = NULL;
+    list->size = 0;
+    insert_question(list, question);
     return 0;
 }
