@@ -1,0 +1,17 @@
+{"terminal.integrated.profiles.windows": {"VsDevCmd (2022)": {
+    "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+    ],
+    "args": [
+        "/k",
+        // Path below assumes a VS2022 Community install; 
+        // update as appropriate if your IDE installation path
+        // is different, or if using the standalone build tools
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\VsDevCmd.bat",
+        "-arch=x64",
+        "-host_arch=x64"
+    ],
+    "overrideName": true,
+    "icon": "terminal-cmd"
+}}}
