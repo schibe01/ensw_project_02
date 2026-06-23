@@ -11,7 +11,9 @@ void insert_question(QuestionList* list, Question* quest){
         list->tail->next = quest;
     }
     list->tail = quest;
+    quest->next = NULL;
     list->size++;
+    printf("%d\n", list->size);
 
 }
 
@@ -22,7 +24,7 @@ void print_question(QuestionList* list, int idx){
         return;
     }
 
-    for(; --idx; ){
+    for(; idx--; ){
         ptr = ptr->next;
     }
 
