@@ -18,5 +18,6 @@ int main(){
     list->tail = NULL;
     list->size = 0;
     insert_question(list, question);
+    print_question(list, 0);
     return 0;
 }
