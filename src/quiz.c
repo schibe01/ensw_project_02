@@ -6,19 +6,18 @@ void insert_question(QuestionList* list, Question* quest){
 
     if(list->head == NULL){
         list->head = quest;
-        list->tail = quest;
     }
     else{
         list->tail->next = quest;
-        list->tail = quest;
-        list->size++;
     }
+    list->tail = quest;
+    list->size++;
 
 }
 
 void print_question(QuestionList* list, int idx){
     Question *ptr = list->head;
-    if(idx < 1|| idx > list->size){
+    if(idx < 0 || idx >= list->size){
         fprintf(stderr, "Error: index doesn't exist\n");
         return;
     }
