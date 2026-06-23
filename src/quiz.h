@@ -14,6 +14,7 @@ typedef struct Question {
 
 typedef struct {
     Question* head;
+    Question* tail;
     size_t size;
     int round;
     double score;
@@ -21,7 +22,7 @@ typedef struct {
 
 void print_question(QuestionList* list, int idx);
 Question answer_question(QuestionList* list, int idx);
-void insert_question(QuestionList* list, Question quest);
+void insert_question(QuestionList* list, Question* quest);
 void delete_question(QuestionList* list, int idx);
 Question read_question();
 
