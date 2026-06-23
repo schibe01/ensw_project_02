@@ -17,11 +17,21 @@ void insert_question(QuestionList* list, Question* quest){
 }
 
 void print_question(QuestionList* list, int idx){
-
+    Question *ptr = list->head;
     if(idx < 1|| idx > list->size){
-        fprintf(stderr, "Error: index doesn't extist\n");
+        fprintf(stderr, "Error: index doesn't exist\n");
         return;
     }
 
+    for(; --idx; ){
+        ptr = ptr->next;
+    }
+
+    printf("%s\n\n", ptr->quest);
+    for(int i = 0; i < 4; i++){
+        printf("Ans %d: %s\n", i, ptr->ans[i]);
+    }
     
+    printf("\nWas ist Ihre Antwort?\n");    
 }
+
