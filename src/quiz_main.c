@@ -6,11 +6,11 @@
 int main(){
     Question *question = malloc(sizeof(Question));
     question -> quest = "Welches dieser Tiere ist kein Säugetier?";
-    question -> ans1 = "Igel";
-    question -> ans2 = "Lachs";
-    question -> ans3 = "Mensch";
-    question -> ans4 = "Marder";
-    question -> corAns = 2;
+    question -> ans[0] = "Igel";
+    question -> ans[1] = "Lachs";
+    question -> ans[2] = "Mensch";
+    question -> ans[3] = "Marder";
+    question -> corAns = 1;
     question -> next = NULL;
 
     QuestionList *list = malloc(sizeof(QuestionList));

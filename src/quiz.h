@@ -1,13 +1,11 @@
 #ifndef QUIZ_H
 #define QUIZ_H
-#define LENGHT 1024;
+#define LENGHT 1024
+#define ANS_NUM 4
 
 typedef struct Question {
     char *quest;
-    char *ans1;
-    char *ans2;
-    char *ans3;
-    char *ans4;
+    char *ans[ANS_NUM];
     int corAns;
     struct Question* next;
 } Question;
