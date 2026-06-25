@@ -19,6 +19,7 @@ typedef struct {
 } QuestionList;
 
 void print_question(QuestionList* list, int idx);
+void print_question_list(QuestionList* list);
 Question answer_question(QuestionList* list, int idx);
 void insert_question(QuestionList* list, Question* quest);
 void delete_question(QuestionList* list, int idx);
