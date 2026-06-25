@@ -37,9 +37,10 @@ void print_question(QuestionList* list, int idx){
 
 Question answer_question(QuestionList* list, int idx){
     Question *ptr = list->head;
+    Question *null = NULL;
     if(idx < 0 || idx >= list->size){
         fprintf(stderr, "Error: Index doesn't exist\n");
-        return;
+        return *null;
     }
     
     int ans;
@@ -50,14 +51,19 @@ Question answer_question(QuestionList* list, int idx){
         fprintf(stderr, "Error: Wrong input");
     }
 
+    if(ans < 1 || ans > 4){
+        printf("Keine gueltige Antwort");
+        return *null;
+    }
+
     for(; idx--; ){
         ptr = ptr->next;
     }
 
-    if(ans - 1 == ptr->ans){
+    if(ans - 1 == ptr->corAns){
         printf("Richtige Antwort!");
         list->score += pow(2, -(list->round));
-        return;
+        return *null;
     }
     
     else{
