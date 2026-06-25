@@ -52,8 +52,8 @@ Question answer_question(QuestionList* list, int idx){
     }
 
     if(ans < 1 || ans > 4){
-        printf("Keine gueltige Antwort");
-        return *null;
+        printf("Keine gueltige Antwort\n");
+        return answer_question(list, idx);
     }
 
     for(; idx--; ){
