@@ -15,19 +15,19 @@ int main(){
     question -> ans[3] = "Marder";
     question -> corAns = 1;
     question -> next = NULL;
-  
-    read_question_list(list, 4, "question.txt");
-    insert_question(list, question);
-    print_question(list, 0);
+    //insert_question(list, question);
+    //print_question(list, 0);
 
     FILE *file = fopen(filename, "r");
-  
-    read_question_list(list, 5, filename);
-    print_question(list, 0);
-    print_question_list(list);
-  
-  
+
     QuestionList *list = malloc(sizeof(QuestionList));
+
+    //read_question_list(list, 5, filename);
+    //print_question(list, 0);
+    //print_question_list(list);
+  
+  
+    
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
@@ -46,7 +46,7 @@ int main(){
 
     int option;
     
-    printf("Willkommen zum Quiz!\n\n");
+    printf("\nWillkommen zum Quiz!\n\n");
 
     while(1){
         printf("\nWaehlen Sie eine Option:\n");
