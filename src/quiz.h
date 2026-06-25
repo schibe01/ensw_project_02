@@ -1,6 +1,6 @@
 #ifndef QUIZ_H
 #define QUIZ_H
-#define LENGHT 1024
+#define N 1024
 #define ANS_NUM 4
 
 typedef struct Question {
@@ -23,6 +23,7 @@ void print_question_list(QuestionList* list);
 int answer_question(QuestionList* list, int idx);
 void insert_question(QuestionList* list, Question* quest);
 void delete_question(QuestionList* list, int idx);
+void read_question_list(QuestionList* list, int n, const char* filename);
 Question read_question();
 void quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
 

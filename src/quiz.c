@@ -166,4 +166,29 @@ void quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
 
         
     }
+    
+}
+
+void read_question_list(QuestionList* list, int n, const char* filename) {
+    FILE *file = fopen(filename, "r");
+    char Buffer[N];
+
+    if (file == NULL){
+        fprintf(stderr, "File could not be open\n");
+        return;
+    }
+
+    for (int i = 0 ; i < n ; i++) {
+        Question* buffer = NULL;
+        buffer -> quest = fgets(Buffer, N, file);
+        fgets(Buffer, N, file);
+        for (int j = 0 ; j < 4 ; j++) {
+            buffer -> ans[j] = fgets(Buffer, N, file);
+        }
+        fgets(Buffer, N, file);
+        buffer -> corAns = (int) getc(file);
+        fgets(Buffer, N, file);
+        insert_question(list, buffer);       
+    }
+
 }
