@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 #include "quiz.h"
 
 int main(){
@@ -21,8 +22,8 @@ int main(){
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
-    read_question_list(list, 4, "question.txt");
-    insert_question(list, question);
+    read_question_list(list, 5, filename);
     print_question(list, 0);
+    print_question_list(list);
     return 0;
 }

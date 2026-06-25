@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "quiz.h"
 
@@ -14,8 +15,6 @@ void insert_question(QuestionList* list, Question* quest){
     list->tail = quest;
     quest->next = NULL;
     list->size++;
-    printf("%zd\n", list->size);
-
 }
 
 void print_question(QuestionList* list, int idx){
@@ -133,16 +132,30 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
     }
 
     for (int i = 0 ; i < n ; i++) {
-        Question* buffer = NULL;
-        buffer -> quest = fgets(Buffer, N, file);
+        Question *buffer = malloc(sizeof(Question));
+
+        if (!buffer) {
+            fprintf(stderr, "Memory allocation failed\n");
+            fclose(file);
+            return;
+        }
+
+        fgets(Buffer, N, file);
+        buffer -> quest = strdup(Buffer);
         fgets(Buffer, N, file);
         for (int j = 0 ; j < 4 ; j++) {
-            buffer -> ans[j] = fgets(Buffer, N, file);
+            fgets(Buffer, N, file);
+            buffer -> ans[j] = strdup(Buffer);
         }
         fgets(Buffer, N, file);
-        buffer -> corAns = (int) getc(file);
         fgets(Buffer, N, file);
-        insert_question(list, buffer);       
+        
+        buffer -> corAns = Buffer[0] - '0';
+
+        fgets(Buffer, N, file);
+        fgets(Buffer, N, file);
+        insert_question(list, buffer);
     }
 
+    fclose(file);
 }
