@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "quiz.h"
 
 void insert_question(QuestionList* list, Question* quest){
@@ -20,7 +21,7 @@ void insert_question(QuestionList* list, Question* quest){
 void print_question(QuestionList* list, int idx){
     Question *ptr = list->head;
     if(idx < 0 || idx >= list->size){
-        fprintf(stderr, "Error: index doesn't exist\n");
+        fprintf(stderr, "Error: Index doesn't exist\n");
         return;
     }
 
@@ -30,10 +31,9 @@ void print_question(QuestionList* list, int idx){
 
     printf("%s\n\n", ptr->quest);
     for(int i = 0; i < 4; i++){
-        printf("Ans %d: %s\n", i, ptr->ans[i]);
+        printf("Ans %d: %s\n", i + 1, ptr->ans[i]);
     }
     
-    printf("\nWas ist Ihre Antwort?\n");    
 }
 
 void delete_question(QuestionList* list, int idx){
@@ -83,3 +83,42 @@ void print_question_list(QuestionList* list){
     printf("size: %zd\n\n", list -> size);
 }
 
+Question answer_question(QuestionList* list, int idx){
+    Question *ptr = list->head;
+    Question *null = NULL;
+    if(idx < 0 || idx >= list->size){
+        fprintf(stderr, "Error: Index doesn't exist\n");
+        return *null;
+    }
+    
+    int ans;
+    printf("\nWas ist Ihre Antwort?\n");
+    int check = scanf("%d", &ans);
+
+    if(check != 1){
+        fprintf(stderr, "Error: Wrong input");
+    }
+
+    if(ans < 1 || ans > 4){
+        printf("Keine gueltige Antwort");
+        return *null;
+    }
+
+    for(; idx--; ){
+        ptr = ptr->next;
+    }
+
+    if(ans - 1 == ptr->corAns){
+        printf("Richtige Antwort!");
+        list->score += pow(2, -(list->round));
+        return *null;
+    }
+    
+    else{
+        printf("Leider falsch");
+        return *ptr;
+    }
+    
+    
+    
+}
