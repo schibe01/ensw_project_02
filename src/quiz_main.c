@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 #include "quiz.h"
 
 int main(){
@@ -20,7 +21,12 @@ int main(){
     print_question(list, 0);
 
     FILE *file = fopen(filename, "r");
-
+  
+    read_question_list(list, 5, filename);
+    print_question(list, 0);
+    print_question_list(list);
+  
+  
     QuestionList *list = malloc(sizeof(QuestionList));
     list->head = NULL;
     list->tail = NULL;
