@@ -20,10 +20,11 @@ typedef struct {
 
 void print_question(QuestionList* list, int idx);
 void print_question_list(QuestionList* list);
-Question answer_question(QuestionList* list, int idx);
+int answer_question(QuestionList* list, int idx);
 void insert_question(QuestionList* list, Question* quest);
 void delete_question(QuestionList* list, int idx);
 Question read_question();
+void quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
 
 
 
