@@ -124,8 +124,10 @@ int answer_question(QuestionList* list, int idx){
 }
     
 void quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
+    print_question_list(list);
     
     while(list->size != 0){
+        printf("\n\nRunde %d:\n\n", list->round);
         for(int i = 0; i < numQuestions && i < list->size; i++){
             print_question(list, i);
             int answer = answer_question(list, i);
@@ -161,6 +163,8 @@ void quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
         falseList->round = 0;
         falseList->score = 0.0;
 
+        printf("\n\nRunde %d:\n\n", list->round);
+
 
 
         
@@ -178,6 +182,14 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
     }
 
     for (int i = 0 ; i < n ; i++) {
+
+        if(feof(file)){ //Wie erkennt man am Besten, wann keine Fragen mehr in der Liste sind?
+            fprintf(stderr, "Error: Not enough questions in recieved file\n");
+            fprintf(stderr, "Maximum amount: %d\n\n", i + 1);
+            fclose(file);
+            return;
+        }
+        
         Question *buffer = malloc(sizeof(Question));
 
         if (!buffer) {
