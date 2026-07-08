@@ -75,10 +75,11 @@ int main(){
             int check = scanf("%d", &numQuestions);
 
             while(getchar() != '\n');
-            if(check != 1 || numQuestions < 1 || numQuestions > list->size){
+            if(check != 1 || numQuestions < 1){
                 fprintf(stderr, "Error: Wrong input\n");
             } else {
-                printf("Quiz startet\n");
+                printf("\nQuiz startet\n");
+                read_question_list(list, numQuestions, filename);
                 quiz(list, falseList, numQuestions);
             }
             break;
