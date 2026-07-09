@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 #include "quiz.h"
 
 int main(){
+    srand(time(NULL));
     char* filename = "questions.txt";
     char* fileHighscore = "highscore.txt";
     QuestionList *list = malloc(sizeof(QuestionList));
@@ -84,7 +86,7 @@ int main(){
     switch(option){
     
         case 1:
-            printf("\nGeben Sie die gewuenschte Anzahl an Fragen ein:\n");
+            printf("\nGeben Sie die gewuenschte Anzahl an Fragen ein (maximal 20 Fragen):\n");
             int numQuestions;
             int check = scanf("%d", &numQuestions);
 
@@ -92,9 +94,44 @@ int main(){
             if(check != 1 || numQuestions < 1){
                 fprintf(stderr, "Error: Wrong input\n");
             } else {
+                numQuestions = min(numQuestions, 20);
                 printf("\nQuiz startet\n");
                 read_question_list(list, numQuestions, filename);
-                quiz(list, falseList, numQuestions);
+                double finalScore = quiz(list, falseList, numQuestions);
+                printf("\nEndpunkte: %.2f\n", finalScore);
+
+
+                printf("\nWollen Sie den Highscore speichern?\n");
+                printf("1: Ja\n");
+                printf("2: Nein\n");
+                int save;
+                check = scanf("%d", &save);
+                while(getchar() != '\n');
+
+                if(check != 1 || (save != 1 && save != 2)){
+                    fprintf(stderr, "Error: Wrong input\n");
+                } else if(save == 1){
+                    printf("Highscore wird gespeichert\n");
+                } else {
+                    printf("Highscore wird nicht gespeichert\n");
+                }
+
+                printf("\nWollen Sie die aktuelle Highscoreliste ansehen?\n");
+                printf("1: Ja\n");
+                printf("2: Nein\n");
+                int view;
+                check = scanf("%d", &view);
+                while(getchar() != '\n');
+
+                if(check != 1 || (view != 1 && view != 2)){
+                    fprintf(stderr, "Error: Wrong input\n");
+                } else if(view == 1){
+                    printf("Highscoreliste wird angezeigt\n");
+                } else {
+                    printf("Highscoreliste wird nicht angezeigt\n");
+                }
+
+                printf("\nVielen Dank fuer die Teilnahme am Quiz!\n");
             }
             break;
         case 2:
@@ -108,45 +145,6 @@ int main(){
             break;
     
     }
-
-    printf("\nWollen Sie den Highscore speichern?\n");
-    printf("1: Ja\n");
-    printf("2: Nein\n");
-    int save;
-    int check = scanf(" %d", &save);
-    while(getchar() != '\n');
-
-    if(check != 1 || (save != 1 && save != 2)){
-        fprintf(stderr, "Error: Wrong input\n");
-    } else if(save == 1){
-        printf("Highscore wird gespeichert\n");
-    } else {
-        printf("Highscore wird nicht gespeichert\n");
-    }
-
-    printf("\nWollen Sie die aktuelle Highscoreliste ansehen?\n");
-    printf("1: Ja\n");
-    printf("2: Nein\n");
-    int view;
-    check = scanf(" %d", &view);
-    while(getchar() != '\n');
-
-    if(check != 1 || (view != 1 && view != 2)){
-        fprintf(stderr, "Error: Wrong input\n");
-    } else if(view == 1){
-        printf("Highscoreliste wird angezeigt\n");
-    } else {
-        printf("Highscoreliste wird nicht angezeigt\n");
-    }
-
-    printf("\nVielen Dank fuer die Teilnahme am Quiz!\n");
-
-    //insert_question(list, question);
-    //print_question(list, 0);
-
-
-
-
-
+    
     return 0;
 }

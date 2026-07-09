@@ -5,16 +5,6 @@ Lachs
 Mensch
 Marder
 
-1
-
-
-Wer schafft am meissten Klimmzuege im Gym in Munderkingen?
-
-Jari
-Ori
-Ben
-Niklas
-
 2
 
 
@@ -25,7 +15,7 @@ Wie viel Zaehne sind im Milchzahn Gebiss?
 18
 20
 
-3
+4
 
 
 Wie viele Zaehne sind im Erwachsenen Gebiss?
@@ -35,14 +25,175 @@ Wie viele Zaehne sind im Erwachsenen Gebiss?
 20
 28
 
-3
+4
 
 
 Welche ist die einzige nicht rechteckige Fahne?
 
 Qatar
 Nepal
-Uzbekistan
+Usbekistan
 Venezuela
 
+2
+
+
+Was wird unterbunden, wenn man in ein Raeuber-Beute-System eine Kapazitaet einbaut (im Fall einer Nahrungskette)?
+
+Aussterben der Raeuber und Beute
+Aussterben der Konsumenten
+Divergenz der Raeuber und Beute
+Divergenz des Konsumenten
+
+3
+
+
+Welche der folgenden Aussagen entspricht einer der drei Lotka-Volterra-Regeln?
+
+Die Raeuberpopulation erholt sich schneller nach Stoerungen
+Die Entwicklung der Populationen erfolgt voellig aperiodisch
+Die Populationen schwanken um einen konstanten Mittelwert
+Die Beutepopulation stirbt ohne natuerliche Fressfeinde aus
+
+3
+
+
+Was passiert in einem System mit zwei Beute- oder Raeuberpopulationen, wenn die Parameter nicht perfekt ausgeglichen sind?
+
+Die Reproduktionsrate beider Arten sinkt auf Null
+Die benachteiligte Population stirbt langfristig aus
+Das System wandelt sich in ein Drei-Phasen-Modell
+Alle Teilpopulationen koexistieren dauerhaft stabil
+
+2
+
+
+Wie heisst die dritte Lotka-Volterra-Regel?
+
+Die Entwicklung beider Populationen erfolgt periodisch
+Die periodische Entwicklung schwankt um einen konstanten Mittelwert
+Durch das Einbauen einer Kapazitaet wird Divergenz unterbunden
+Bei einer aeusseren Stoerung des Systems erholt sich die Beutepopulation schneller als die der Raeuber
+
+4
+
+
+Was gilt fuer eine Z-Transformierte Folge y_k nicht?
+
+Die Z-Transformation ist das diskrete Analogon zur Laplace-Transformation
+Die Z-Transformation bildet eine Folge im Zeitbereich in eine Folge im Bildbereich ab
+Die Z-Transformation ist nur bei kausalen Folgen
+Die Z-Transformation kann auch ruckgaengig gemacht werden, es gibt also eine inverse Z-Transformation
+
+2
+
+
+Was ist die Z-Transformation vom Dirac Impuls?
+
 1
+z+1
+z
+z-1
+
+1
+
+
+Was ist die Rotation einer Rotation eines Vektorfelds A?
+
+grad(div(A)) - div(grad(A))
+div(grad(A)) - grad(div(A))
+grad(div(A)) + div(grad(A))
+div(grad(A)) + grad(div(A))
+
+1
+
+
+Wie viele Binnenstaaten hat Afrika?
+
+12
+25
+17
+8
+
+3
+
+
+Was ist die Hauptstadt von Australien?
+
+Sydney
+Melbourne
+Canberra
+Brisbane
+
+3
+
+
+Welches Land hat weltweit die meisten Inseln (ueber 260.000)?
+
+Indonesien
+Philippinen
+Kanada
+Schweden
+
+4
+
+
+Welche sind die zwei einzigen doppelten Binnenstaaten (nur umgeben von anderen Binnenstaaten)?
+
+Deutschland, Paraguay
+Liechtenstein, Usbekistan
+Zentralafrikanische Republik, Mongolei
+Kosovo, Belarus
+
+2
+
+
+Wie hiess das Forschungsschiff von Charles Darwin?
+
+Dolphin
+Beagle
+Calypso
+Dove
+
+2
+
+
+Wie heisst der laengste Wurm der Welt?
+
+Lineus longissimus
+Appendix maximus
+Longus spiralus
+Serpens amazonicus
+
+1
+
+
+Welche dieser Blumen gibt es nicht in der Natur?
+
+Wachsblumen
+Papierblumen
+Porzellanblumen
+Glasblumen
+
+4
+
+
+Was erforschen Gelotologen?
+
+Eis
+Luegen
+Lachen
+Liebeskummer
+
+3
+
+
+Wofuer steht das "D" in D-Zug?
+
+Durchgang
+Durchfahrt
+Direkt
+Drehstrom
+
+1
+

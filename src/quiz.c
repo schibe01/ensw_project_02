@@ -4,6 +4,8 @@
 #include <math.h>
 #include "quiz.h"
 
+#define NUM_QUEST 20
+
 void insert_question(QuestionList* list, Question* quest){
 
     if(list->head == NULL){
@@ -123,17 +125,16 @@ int answer_question(QuestionList* list, int idx){
     }
 }
     
-void quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
-    print_question_list(list);
-    
+double quiz(QuestionList* list, QuestionList* falseList, int numQuestions){ 
     while(list->size != 0){
-        printf("\n\nRunde %d:\n\n", list->round);
+        printf("\n\nRunde %d:\n\n", list->round + 1);
         for(int i = 0; i < numQuestions && i < list->size; i++){
             print_question(list, i);
             int answer = answer_question(list, i);
             if(answer == 1){
                 printf("\nScore: %.2f\n", list->score);
-                printf("Runde: %d\n", list->round);
+                printf("\n\n\n\n\n");
+                //printf("Runde: %d\n\n\n\n\n", list->round + 1);
             }
             else if(answer == 0){
 
@@ -161,15 +162,10 @@ void quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
         falseList->tail = NULL;
         falseList->size = 0;
         falseList->round = 0;
-        falseList->score = 0.0;
-
-        printf("\n\nRunde %d:\n\n", list->round);
-
-
-
-        
+        falseList->score = 0.0;        
     }
     
+    return list->score;
 }
 
 void read_question_list(QuestionList* list, int n, const char* filename) {
@@ -181,14 +177,14 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
         return;
     }
 
-    for (int i = 0 ; i < n ; i++) {
+    for (int i = 0 ; i < NUM_QUEST; i++) {
 
-        if(feof(file)){ //Wie erkennt man am Besten, wann keine Fragen mehr in der Liste sind?
+        /*if(feof(file)){ //Wie erkennt man am Besten, wann keine Fragen mehr in der Liste sind?
             fprintf(stderr, "Error: Not enough questions in recieved file\n");
             fprintf(stderr, "Maximum amount: %d\n\n", i + 1);
             fclose(file);
             return;
-        }
+        }*/
         
         Question *buffer = malloc(sizeof(Question));
 
@@ -208,12 +204,44 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
         fgets(Buffer, N, file);
         fgets(Buffer, N, file);
         
-        buffer -> corAns = Buffer[0] - '0';
+        buffer -> corAns = Buffer[0] - '0' - 1; // Convert char to int and adjust for 0-based index
 
         fgets(Buffer, N, file);
         fgets(Buffer, N, file);
         insert_question(list, buffer);
     }
+
+    QuestionList *bufferList = malloc(sizeof(QuestionList));
+    bufferList->head = NULL;
+    bufferList->tail = NULL;
+    bufferList->size = 0;
+
+    for(; list->size > NUM_QUEST - n; ){
+        
+        Question *ptr = list->head;
+
+        int randomIndex = (rand() % list->size);
+
+        for(int i = 0; i < randomIndex; i++){
+            ptr = ptr->next;
+        }
+
+        Question *temp = malloc(sizeof(Question));
+        if(!temp){
+            fprintf(stderr, "Memory allocation failed\n");
+            return;
+        }
+
+        *temp = *ptr;
+        temp->next = NULL;
+
+        insert_question(bufferList, temp);
+        delete_question(list, randomIndex);
+    }
+
+    *list = *bufferList;
+    free(bufferList);
+    
 
     fclose(file);
 }
