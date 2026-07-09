@@ -6,6 +6,9 @@
 
 int main(){
     char* filename = "questions.txt";
+    char* fileHighscore = "highscore.txt";
+    QuestionList *list = malloc(sizeof(QuestionList));
+
 
     Question *question = malloc(sizeof(Question));
     question -> quest = "Welches dieser Tiere ist kein Säugetier?";
@@ -15,8 +18,19 @@ int main(){
     question -> ans[3] = "Marder";
     question -> corAns = 1;
     question -> next = NULL;
+
+
+    Score* score = malloc(sizeof(score));
+    score->name = "Lucien";
+    score->surname = "Weißer";
+    score->score = 0.0;
+
+    updateHighscore(fileHighscore, score);
+    
+
     //insert_question(list, question);
     //print_question(list, 0);
+
 
     FILE *file = fopen(filename, "r");
 
