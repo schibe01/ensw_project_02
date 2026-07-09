@@ -25,7 +25,7 @@ void insert_question(QuestionList* list, Question* quest);
 void delete_question(QuestionList* list, int idx);
 void read_question_list(QuestionList* list, int n, const char* filename);
 Question read_question();
-void quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
+double quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
 
 
 
