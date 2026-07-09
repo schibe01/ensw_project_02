@@ -18,6 +18,12 @@ typedef struct {
     double score;
 } QuestionList;
 
+typedef struct Score{
+    char* name;
+    char* surname;
+    double score;
+} Score;
+
 void print_question(QuestionList* list, int idx);
 void print_question_list(QuestionList* list);
 int answer_question(QuestionList* list, int idx);
@@ -26,7 +32,7 @@ void delete_question(QuestionList* list, int idx);
 void read_question_list(QuestionList* list, int n, const char* filename);
 Question read_question();
 double quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
-
+void updateHighscore(char* filename, Score* score);
 
 
 

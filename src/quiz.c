@@ -173,7 +173,7 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
     char Buffer[N];
 
     if (file == NULL){
-        fprintf(stderr, "File could not be open\n");
+        fprintf(stderr, "File could not be opened\n");
         return;
     }
 
@@ -244,4 +244,83 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
     
 
     fclose(file);
+}
+
+void updateHighscore(char* filename, Score* score) {
+    Score highscore[5]; 
+    FILE *file = fopen(filename, "r");
+    char Buffer[N];
+
+    if (file == NULL) {
+        fprintf(stderr, "File could not be opened\n");
+        return;
+    }
+
+    fgets(Buffer, N, file);
+    fgets(Buffer, N, file);
+    for (int i = 0 ; i < 5 ; i++) {
+        fgets(Buffer, N, file);
+        char c;
+        int j = 3;
+        int k = 0;
+        char buffer[N];
+        while((c = Buffer[j]) != ' ') {
+            buffer[k++] = c;
+            j++;
+        }
+        buffer[k++] = '\0';
+        highscore[i].name = strdup(buffer);
+
+
+        char buffer1[N];
+        k = 0;
+        j++;
+        while((c = Buffer[j]) != ' '){
+            buffer1[k++] = c;
+            j++;
+        }
+        buffer1[k++] = '\0';
+        highscore[i].surname = strdup(buffer1);
+
+        int decimal = 1;
+        j = j+3;
+        highscore[i].score = 0.0;
+        while((c = Buffer[j]) != '\n') {
+            if (c == ' ') {
+                decimal--;
+            }
+            if(c >= '0' && c <= '9') {
+            highscore[i].score += pow(10, decimal--)*(c - '0');
+            }
+            j++;
+        }
+
+    }
+    
+    fclose(file);
+
+
+    int j = 0;
+    Score newHighscore[5];
+    for (int i = 0 ; i < 5 ; i++) {
+        if (highscore[i].score < score -> score && j == 0) {
+            newHighscore[i] = *score;
+            j = 1;
+        } else if(j == 1) {
+            newHighscore[i] = highscore[i-j];
+        } else {
+            newHighscore[i] = highscore[i];
+        }
+    }
+
+    
+    file = fopen(filename, "w");
+
+    fputs("Highscorelist\n", file);
+    fputs("\n", file);
+    for (int i = 0 ; i < 5 ; i++) {
+        fprintf(file, "%d. %s %s : %5.2lf\n", i+1, newHighscore[i].name, newHighscore[i].surname, newHighscore[i].score);
+    }
+    fclose(file);
+
 }
