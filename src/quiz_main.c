@@ -27,22 +27,21 @@ int main(){
 
     updateHighscore(fileHighscore, score);
     
-    printf("test\n");
 
-    read_question_list(list, 4, filename);
-    printf("test2\n");
-    insert_question(list, question);
-    print_question(list, 0);
+    //insert_question(list, question);
+    //print_question(list, 0);
 
-    printf("test1\n");
 
     FILE *file = fopen(filename, "r");
+
+    QuestionList *list = malloc(sizeof(QuestionList));
+
+    //read_question_list(list, 5, filename);
+    //print_question(list, 0);
+    //print_question_list(list);
   
-    read_question_list(list, 5, filename);
-    print_question(list, 0);
-    print_question_list(list);
   
-  
+    
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
@@ -61,7 +60,7 @@ int main(){
 
     int option;
     
-    printf("Willkommen zum Quiz!\n\n");
+    printf("\nWillkommen zum Quiz!\n\n");
 
     while(1){
         printf("\nWaehlen Sie eine Option:\n");
@@ -90,10 +89,11 @@ int main(){
             int check = scanf("%d", &numQuestions);
 
             while(getchar() != '\n');
-            if(check != 1 || numQuestions < 1 || numQuestions > list->size){
+            if(check != 1 || numQuestions < 1){
                 fprintf(stderr, "Error: Wrong input\n");
             } else {
-                printf("Quiz startet\n");
+                printf("\nQuiz startet\n");
+                read_question_list(list, numQuestions, filename);
                 quiz(list, falseList, numQuestions);
             }
             break;
