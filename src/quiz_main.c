@@ -22,7 +22,7 @@ int main(){
     question -> next = NULL;
 
 
-    Score* score = malloc(sizeof(score));
+    Score* score = malloc(sizeof(Score));
     score->name = "Lucien";
     score->surname = "Weißer";
     score->score = 0.0;
@@ -36,7 +36,7 @@ int main(){
 
     FILE *file = fopen(filename, "r");
 
-    QuestionList *list = malloc(sizeof(QuestionList));
+    //QuestionList *list = malloc(sizeof(QuestionList));
 
     //read_question_list(list, 5, filename);
     //print_question(list, 0);
@@ -127,6 +127,7 @@ int main(){
                     fprintf(stderr, "Error: Wrong input\n");
                 } else if(view == 1){
                     printf("Highscoreliste wird angezeigt\n");
+                    printHighscore(fileHighscore);
                 } else {
                     printf("Highscoreliste wird nicht angezeigt\n");
                 }
@@ -135,7 +136,8 @@ int main(){
             }
             break;
         case 2:
-            printf("Highscores anzeigen\n");
+            printf("Highscores anzeigen:\n");
+            printHighscore(fileHighscore);
             break;
         case 3:
             printf("Beenden\n");
