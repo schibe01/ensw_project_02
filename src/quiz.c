@@ -75,9 +75,16 @@ void delete_question(QuestionList* list, int idx){
 }
 
 void print_question_list(QuestionList* list){
+
+    if(list->size == 0){
+        printf("Fragenliste ist leer\n");
+        printf("size: %zd\n\n", list -> size);
+        return;
+    }
+
     Question* ptr = list -> head -> next;
     for (int i = 0 ; i < list -> size ; i++) {
-        printf("Question %d: ", i);
+        printf("Question %d: ", i + 1);
         if (i == 0) {
             printf("%s\n", list -> head -> quest);
         } else if (i == list -> size - 1) {
@@ -99,7 +106,7 @@ int answer_question(QuestionList* list, int idx){
     }
     
     int ans;
-    printf("\nWas ist Ihre Antwort?\n");
+    printf("\nWas ist Ihre Antwort (1-4)?\n");
     int check = scanf("%d", &ans);
 
     while(getchar() != '\n');
@@ -151,6 +158,8 @@ double quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
 
         }
         
+        printf("Anzahl richtig beantworteter Fragen in Runde %d: %zd\n", list->round + 1, list->size - falseList->size);
+        printf("Anzahl falsch beantworteter Fragen: %zd\n\n\n", falseList->size);
 
         falseList->round = ++list->round;
 
