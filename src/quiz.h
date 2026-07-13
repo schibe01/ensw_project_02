@@ -33,6 +33,7 @@ void read_question_list(QuestionList* list, int n, const char* filename);
 Question read_question();
 double quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
 void updateHighscore(char* filename, Score* score);
+void printHighscore(char* filename);
 
 
 

@@ -23,8 +23,8 @@ int main(){
 
 
     Score* score = malloc(sizeof(Score));
-    score->name = "Jonald";
-    score->surname = "McDonald";
+    score->name = "Lucien";
+    score->surname = "Weißer";
     score->score = 0.0;
 
     updateHighscore(fileHighscore, score);
@@ -150,6 +150,7 @@ int main(){
                     fprintf(stderr, "Error: Wrong input\n");
                 } else if(view == 1){
                     printf("Highscoreliste wird angezeigt\n");
+                    printHighscore(fileHighscore);
                 } else {
                     printf("Highscoreliste wird nicht angezeigt\n");
                 }
@@ -158,7 +159,8 @@ int main(){
             }
             break;
         case 2:
-            printf("Highscores anzeigen\n");
+            printf("Highscores anzeigen:\n");
+            printHighscore(fileHighscore);
             break;
         case 3:
             while(1){
