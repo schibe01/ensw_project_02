@@ -4,7 +4,6 @@
 #include <math.h>
 #include "quiz.h"
 
-#define NUM_QUEST 20
 
 void insert_question(QuestionList* list, Question* quest){
 
@@ -30,9 +29,9 @@ void print_question(QuestionList* list, int idx){
         ptr = ptr->next;
     }
 
-    printf("\n%s\n\n", ptr->quest);
+    printf("\n\n\n%s\n\n", ptr->quest);
     for(int i = 0; i < 4; i++){
-        printf("Ans %d: %s\n", i + 1, ptr->ans[i]);
+        printf("    %d: %s\n", i + 1, ptr->ans[i]);
     }
     
 }
@@ -77,7 +76,7 @@ void delete_question(QuestionList* list, int idx){
 void print_question_list(QuestionList* list){
 
     if(list->size == 0){
-        printf("Fragenliste ist leer\n");
+        printf("\nFragenliste ist leer\n");
         printf("size: %zd\n\n", list -> size);
         return;
     }
@@ -121,30 +120,30 @@ int answer_question(QuestionList* list, int idx){
     }
 
     if(ans - 1 == ptr->corAns){
-        printf("Richtige Antwort!\n\n");
+        printf("Richtige Antwort!\n");
         list->score += pow(2, -(list->round));
         return 1;       //Richtige Antwort
     }
     
     else{
-        printf("Leider falsch\n\n");
+        printf("Leider falsch\n");
         return 0;       //Falsche Antwort
     }
 }
     
 double quiz(QuestionList* list, QuestionList* falseList, int numQuestions){ 
     while(list->size != 0){
-        printf("\n\nRunde %d:\n\n", list->round + 1);
+        printf("\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        printf("\n\nRunde %d:", list->round + 1);
         for(int i = 0; i < numQuestions && i < list->size; i++){
             print_question(list, i);
             int answer = answer_question(list, i);
             if(answer == 1){
-                printf("\nScore: %.2f\n", list->score);
-                printf("\n\n\n\n\n");
-                //printf("Runde: %d\n\n\n\n\n", list->round + 1);
+                printf("\nPunktzahl: %.2f\n", list->score);
+                //printf("");
             }
             else if(answer == 0){
-
+                printf("\nPunktzahl: %.2f\n", list->score);
                 Question *ptr = list->head;
                 for(int j = i; j--; ){
                     ptr = ptr->next;
@@ -159,7 +158,7 @@ double quiz(QuestionList* list, QuestionList* falseList, int numQuestions){
         }
         
         printf("Anzahl richtig beantworteter Fragen in Runde %d: %zd\n", list->round + 1, list->size - falseList->size);
-        printf("Anzahl falsch beantworteter Fragen: %zd\n\n\n", falseList->size);
+        printf("Anzahl falsch beantworteter Fragen: %zd\n", falseList->size);
 
         falseList->round = ++list->round;
 
@@ -186,7 +185,11 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
         return;
     }
 
-    for (int i = 0 ; i < NUM_QUEST; i++) {
+    fgets(Buffer, N, file);
+    int num = 10*(Buffer[0] - '0') + (Buffer[1] - '0');
+    fgets(Buffer, N, file);
+
+    for (int i = 0 ; i < num; i++) {
 
         /*if(feof(file)){ //Wie erkennt man am Besten, wann keine Fragen mehr in der Liste sind?
             fprintf(stderr, "Error: Not enough questions in recieved file\n");
@@ -213,7 +216,7 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
         fgets(Buffer, N, file);
         fgets(Buffer, N, file);
         
-        buffer -> corAns = Buffer[0] - '0' - 1; // Convert char to int and adjust for 0-based index
+        buffer -> corAns = Buffer[0] - '0' - 1;
 
         fgets(Buffer, N, file);
         fgets(Buffer, N, file);
@@ -224,8 +227,10 @@ void read_question_list(QuestionList* list, int n, const char* filename) {
     bufferList->head = NULL;
     bufferList->tail = NULL;
     bufferList->size = 0;
+    bufferList->round = 0;
+    bufferList->score = 0.0;
 
-    for(; list->size > NUM_QUEST - n; ){
+    for(; list->size > num - n; ){
         
         Question *ptr = list->head;
 
@@ -339,11 +344,33 @@ void printHighscore(char* filename) {
     FILE* file = fopen(filename, "r");
     char Buffer[N];
 
-    fgets(Buffer, N, file);
-    printf("\n");
+    if (file == NULL) {
+        fprintf(stderr, "File could not be opened\n");
+        return;
+    }
 
-    do {
+    fgets(Buffer, N, file);
+    printf("%s", Buffer);
+
+    while (fgets(Buffer, N, file) != NULL) {
         printf("%s", Buffer);
-        fgets(Buffer, N, file);
-    } while(feof(file) == 0);
+    }
+    fclose(file);
+}
+
+void write_question(char* filename, Question* Question) {
+    FILE *file = fopen(filename, "w");
+    if(file == NULL){
+        fprintf(stderr, "File could not be opened\n");
+        return;
+    }
+
+    fprintf(file, "01\n\n");
+
+    fprintf(file, "%s\n\n", Question->quest);
+    for(int i = 0; i < ANS_NUM; i++){
+        fprintf(file, "%s\n", Question->ans[i]);
+    }
+    fprintf(file, "\n%d\n\n\n", Question->corAns);
+    fclose(file);
 }

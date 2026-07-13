@@ -34,6 +34,7 @@ Question read_question();
 double quiz(QuestionList* list, QuestionList* falseList, int numQuestions);
 void updateHighscore(char* filename, Score* score);
 void printHighscore(char* filename);
+void write_question(char* filename, Question* Question);
 
 
 
