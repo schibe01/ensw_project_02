@@ -98,8 +98,7 @@ int main(){
                 printf("\nQuiz startet\n");
                 read_question_list(list, numQuestions, filename);
                 double finalScore = quiz(list, falseList, numQuestions) * 20/numQuestions;
-                printf("\nEndpunkte: %.2f\n", finalScore);
-
+                printf("\n\n#########\n\nEndpunkte: %.2f\n\n#########\n\n", finalScore);
 
                 printf("\nWollen Sie den Highscore speichern?\n");
                 printf("1: Ja\n");
@@ -149,17 +148,17 @@ int main(){
                 if(check != 1 || (view != 1 && view != 2)){
                     fprintf(stderr, "Error: Wrong input\n");
                 } else if(view == 1){
-                    printf("Highscoreliste wird angezeigt\n");
+                    printf("Highscoreliste wird angezeigt\n\n\n");
                     printHighscore(fileHighscore);
                 } else {
                     printf("Highscoreliste wird nicht angezeigt\n");
                 }
 
-                printf("\nVielen Dank fuer die Teilnahme am Quiz!\n");
+                printf("\n\nVielen Dank fuer die Teilnahme am Quiz!\n");
             }
             break;
         case 2:
-            printf("Highscores anzeigen:\n");
+            printf("Highscores anzeigen:\n\n");
             printHighscore(fileHighscore);
             break;
         case 3:
@@ -167,7 +166,7 @@ int main(){
                 printf("\nWelchen Test moechten Sie durchfuhren?\n");
                 printf("Test 1: Neue Frage in die Liste der Fragen anfuegen und diese testen\n");
                 printf("Test 2: Fragenliste bearbeiten und anzeigen\n");
-                printf("Test 3: Frage in Dokument einlesen und anzeigen\n");
+                printf("Test 3: Frage in Dokument einlesen und testen\n");
                 printf("Test 4: Frage aus Liste loeschen\n");
 
                 check = scanf("%d", &option);
@@ -187,63 +186,95 @@ int main(){
                 case 1:
                     Question *newQuestion = malloc(sizeof(Question));
 
-                    printf("\nGeben Sie die Frage ein (keine Umlaute)\n");
+                    printf("\nGeben Sie die Frage ein\n");
                     char newQuest[100];
-                    int checkName = scanf("%99[^\n]", newQuest);
-                    
-                    while(getchar() != '\n');
-                    if(checkName != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName = scanf("%99[^\n]", newQuest);
+                        
+                        while(getchar() != '\n');
+                        if(checkName != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                            continue;
+                        } else {
+                            break;
+                        }
                     }
 
 
-                    printf("\nGeben Sie die erste Antortmoeglichkeit ein (keine Umlaute)\n");
+                    printf("\nGeben Sie die erste Antortmoeglichkeit ein\n");
                     char ans0[100];
-                    checkName = scanf("%99[^\n]", ans0);
-                    
-                    while(getchar() != '\n');
-                    if(checkName != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName = scanf("%99[^\n]", ans0);
+                        
+                        while(getchar() != '\n');
+                        if(checkName != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                            continue;
+                        } else {
+                            break;
+                        }
                     }
 
 
-                    printf("\nGeben Sie die zweite Antortmoeglichkeit ein (keine Umlaute)\n");
+                    printf("\nGeben Sie die zweite Antortmoeglichkeit ein\n");
                     char ans1[100];
-                    checkName = scanf("%99[^\n]", ans1);
-                    
-                    while(getchar() != '\n');
-                    if(checkName != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName = scanf("%99[^\n]", ans1);
+                        
+                        while(getchar() != '\n');
+                        if(checkName != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
                     }
 
 
-                    printf("\nGeben Sie die dritte Antortmoeglichkeit ein (keine Umlaute)\n");
+                    printf("\nGeben Sie die dritte Antortmoeglichkeit ein\n");
                     char ans2[100];
-                    checkName = scanf("%99[^\n]", ans2);
-                    
-                    while(getchar() != '\n');
-                    if(checkName != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName = scanf("%99[^\n]", ans2);
+                        
+                        while(getchar() != '\n');
+                        if(checkName != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
                     }
 
 
-                    printf("\nGeben Sie die vierte Antortmoeglichkeit ein (keine Umlaute)\n");
+                    printf("\nGeben Sie die vierte Antortmoeglichkeit ein\n");
                     char ans3[100];
-                    checkName = scanf("%99[^\n]", ans3);
-                    
-                    while(getchar() != '\n');
-                    if(checkName != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName = scanf("%99[^\n]", ans3);
+                        
+                        while(getchar() != '\n');
+                        if(checkName != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
                     }
 
 
                     printf("\nGeben Sie die richtige Antortmoeglichkeit ein (1-4)\n");
                     int cor;
-                    int check = scanf("%d", &cor);
-                    
-                    while(getchar() != '\n');
-                    if(check != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int check = scanf("%d", &cor);
+                        
+                        while(getchar() != '\n');
+                        if(check != 1 || cor < 1 || cor > 4){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
                     }
 
 
@@ -282,13 +313,17 @@ int main(){
 
                     Question *newQuestion2 = malloc(sizeof(Question));
 
-                    printf("\nGeben Sie die Frage ein (keine Umlaute)\n");
                     char newQuest2[100];
-                    int checkName2 = scanf("%99[^\n]", newQuest2);
-                    
-                    while(getchar() != '\n');
-                    if(checkName2 != 1){
-                        fprintf(stderr, "Error: wrong input\n");
+
+                    while(1){
+                        int checkName2 = scanf("%99[^\n]", newQuest2);
+                        
+                        while(getchar() != '\n');
+                        if(checkName2 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
                     }
 
                     newQuestion2 -> quest = strdup(newQuest2);
@@ -303,7 +338,118 @@ int main(){
                     print_question_list(test2);
                     break;
                 case 3:
-                    
+
+                    Question *newQuestion3 = malloc(sizeof(Question));
+
+                    printf("\nGeben Sie die Frage ein\n");
+                    char newQuest3[100];
+
+                    while(1){
+                        int checkName3 = scanf("%99[^\n]", newQuest3);
+                        
+                        while(getchar() != '\n');
+                        if(checkName3 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
+                    }
+
+
+                    printf("\nGeben Sie die erste Antortmoeglichkeit ein\n");
+                    char ans03[100];
+
+                    while(1){
+                        int checkName3 = scanf("%99[^\n]", ans03);
+                        
+                        while(getchar() != '\n');
+                        if(checkName3 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
+                    }
+
+
+                    printf("\nGeben Sie die zweite Antortmoeglichkeit ein\n");
+                    char ans13[100];
+
+                    while(1){
+                        int checkName3 = scanf("%99[^\n]", ans13);
+                        
+                        while(getchar() != '\n');
+                        if(checkName3 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
+                    }
+
+
+                    printf("\nGeben Sie die dritte Antortmoeglichkeit ein\n");
+                    char ans23[100];
+
+                    while(1){
+                        int checkName3 = scanf("%99[^\n]", ans23);
+                        
+                        while(getchar() != '\n');
+                        if(checkName3 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
+                    }
+
+
+                    printf("\nGeben Sie die vierte Antortmoeglichkeit ein\n");
+                    char ans33[100];
+
+                    while(1){
+                        int checkName3 = scanf("%99[^\n]", ans33);
+                        
+                        while(getchar() != '\n');
+                        if(checkName3 != 1){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            break;
+                        }
+                    }
+
+
+                    printf("\nGeben Sie die richtige Antortmoeglichkeit ein (1-4)\n");
+                    int cor3;
+
+                    while(1){
+                        int check3 = scanf("%d", &cor3);
+                        
+                        while(getchar() != '\n');
+                            if(check3 != 1 || cor3 < 1 || cor3 > 4){
+                                fprintf(stderr, "Error: wrong input\n");
+                            } else {
+                                break;
+                            }
+                        }
+
+
+                    newQuestion3 -> quest = strdup(newQuest3);
+                    newQuestion3 -> ans[0] = strdup(ans03);
+                    newQuestion3 -> ans[1] = strdup(ans13);
+                    newQuestion3 -> ans[2] = strdup(ans23);
+                    newQuestion3 -> ans[3] = strdup(ans33);
+                    newQuestion3 -> corAns = cor3;
+                    newQuestion3 -> next = NULL;
+
+                    QuestionList *test3 = malloc(sizeof(QuestionList));
+                    test3->head = NULL;
+                    test3->tail = NULL;
+                    test3->size = 0;
+                    test3->score = 0.0;
+                    test3->round = 0;
+
+                    write_question("test_question.txt", newQuestion3);
+                    read_question_list(test3, 1, "test_question.txt");
+                    print_question_list(test3);
+                    quiz(test3, falseList, 1);
                     break;
                 case 4:
                     QuestionList *test4 = malloc(sizeof(QuestionList));
@@ -348,22 +494,25 @@ int main(){
 
                     insert_question(test4, newQuestion43);
 
-                    printf("\nFragenliste vor dem Löschen:\n");
+                    printf("\nFragenliste vor dem Loeschen:\n");
                     print_question_list(test4);
 
                     printf("\nGeben Sie den Index der Frage ein, die Sie loeschen moechten (1-3):\n");
                     int delIdx;
-                    int checkDel = scanf("%d", &delIdx);
 
-                    while(getchar() != '\n');
-                    if(checkDel != 1 || delIdx < 1 || delIdx > 3){
-                        fprintf(stderr, "Error: wrong input\n");
-                    } else {
-                        delete_question(test4, delIdx - 1);
-                        printf("\nFragenliste nach dem Loeschen:\n");
-                        print_question_list(test4);
+                    while(1){
+                        int checkDel = scanf("%d", &delIdx);
+
+                        while(getchar() != '\n');
+                        if(checkDel != 1 || delIdx < 1 || delIdx > 3){
+                            fprintf(stderr, "Error: wrong input\n");
+                        } else {
+                            delete_question(test4, delIdx - 1);
+                            printf("\nFragenliste nach dem Loeschen:\n");
+                            print_question_list(test4);
+                            break;
+                        }
                     }
-
                     break;
                 default:
                     break;
