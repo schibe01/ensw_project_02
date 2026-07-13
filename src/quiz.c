@@ -324,3 +324,17 @@ void updateHighscore(char* filename, Score* score) {
     fclose(file);
 
 }
+
+
+void printHighscore(char* filename) {
+    FILE* file = fopen(filename, "r");
+    char Buffer[N];
+
+    fgets(Buffer, N, file);
+    printf("\n");
+
+    do {
+        printf("%s", Buffer);
+        fgets(Buffer, N, file);
+    } while(feof(file) == 0);
+}
