@@ -68,7 +68,7 @@ Alle Teilpopulationen koexistieren dauerhaft stabil
 2
 
 
-Wie heisst die dritte Lotka-Volterra-Regel?
+Wie lautet die dritte Lotka-Volterra-Regel?
 
 Die Entwicklung beider Populationen erfolgt periodisch
 Die periodische Entwicklung schwankt um einen konstanten Mittelwert
