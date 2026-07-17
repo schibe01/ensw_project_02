@@ -2,7 +2,10 @@
 ## Beschreibung
 In diesem Projekt haben wir ein konsolenbasiertes Quiztool implementiert. Über Ein- und Ausgabe wird der Benutzer durch das Quiz geführt. Dabei werden dem Benutzer Fragen, mit 4 Antwortmöglichkeiten, gestellt. Am Ende erhält man eine Punktzahl je nachdem wie viele Versuche man für die jeweiligen Fragen benötigt hat.
 ## Benutzung
-Das Programm kann genutzt werden um neues Wissen zu erlangen und zu festigen. Dabei besteht das Programm aus 5 Dateien:
+Das Programm kann genutzt werden um neues Wissen zu erlangen und zu festigen. Um dieses Quiztool zu benutzen erstellen sie sich einen neuen Ordner und führen darin folgenden Befehl ein:
+
+     git clone https://github.com/schibe01/ensw_project_02
+Dann finden sie 5 Dateien, aus denen dieses Tool besteht:
 - quiz.c: Funktionaler Inhalt
 - quiz_main.c: Menüführung
 - quiz.h: Bibliothek (Verknüpfung aller Dateien)
