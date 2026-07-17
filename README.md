@@ -5,6 +5,7 @@ In diesem Projekt haben wir ein konsolenbasiertes Quiztool implementiert. Über 
 Das Programm kann genutzt werden um neues Wissen zu erlangen und zu festigen. Um dieses Quiztool zu benutzen erstellen sie sich einen neuen Ordner und führen darin folgenden Befehl ein:
 
      git clone https://github.com/schibe01/ensw_project_02
+     
 Dann finden sie 5 Dateien, aus denen dieses Tool besteht:
 - quiz.c: Funktionaler Inhalt
 - quiz_main.c: Menüführung
@@ -34,4 +35,4 @@ Der zugrundeliegende Fragenpool kann geändert werden um eigene Fragen dem Quiz 
     richtige Antwortmöglichkeit (z.B. 3)
 
 
-zwischen 2 Fragen müssen sich 2 Leerzeilen befinden.
+Zwischen 2 Fragen müssen sich 2 Leerzeilen befinden.
